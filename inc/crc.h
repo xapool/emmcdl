@@ -1,8 +1,6 @@
 
 #ifdef _WIN32
-#ifdef _WIN32
-#include <Windows.h>
-#endif
+#include <windows.h>
 #endif
 
 #define CRC_16_L_SEED         0xFFFF
