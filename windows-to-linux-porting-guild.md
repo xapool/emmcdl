@@ -32,11 +32,11 @@
 ####平台相关文件操作和系统调用
           
 	HANDEL(NULL)             -- int(0)
-	Sleep()                  -- usleep()
-	CreateFile()             -- xxx_open()
-	ReadFile()				 -- xxx_read()
-	SetFilePointer()         -- xxx_lseek()
-	CloseHandle()            -- xxx_close()
+	Sleep()                  -- sys_usleep()
+	CreateFile()             -- sys_open()
+	ReadFile()				 -- sys_read()
+	SetFilePointer()         -- sys_lseek()
+	CloseHandle()            -- sys_close()
 
 ####宽字符以及安全有关的函数操作
 	_tmain                   -- main
@@ -63,12 +63,12 @@
 
 ####平台相关替换
 
-	1.使用宏定义__WIN32__等将平台相关代码包裹
+	1.使用宏定义_WIN32等将平台相关代码包裹
 	2.使用sysdeps.h替换windows.h等平台相关头文件
 	3.#define MIN(X,Y) ((X) < (Y) ? (X) : (Y))
 	4.windows错误码在<error.h>中，换成对应linux <errno.h>版本
-	5."tchar.h"相关的包含放到"sysdeps.h"的平台控制代码中
-	6.GetTickCount64() 更换为Linux实现clock_gettime()
+	5.凡是宽字符，TCHAR，安全函数有关的全部替换
+	6.GetTickCount64() 封装为函数sys_clock_gettime()
 
 ####项目相关的特殊移植
 
