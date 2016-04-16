@@ -23,7 +23,7 @@ SRC = \
 OBJ = $(SRC:.cpp=.o)
 DEPEND_STATIC_LIB = 
 
-CFLAGS = -std=c++11 -fpermissive
+CFLAGS = -fpermissive
 CFLAGS += -I./inc
 LDFLAGS = -lpthread
 
@@ -32,8 +32,9 @@ SRC += src/diskwriter_linux.cpp src/usbport.cpp src/usb_linux.cpp
 #DEPEND_STATIC_LIB += ../../../output/lib/libselinux.a ../../../output/lib/libpcre.a
 endif
 ifeq ($(COMPILER), mingw)
-SRC += src/diskwriter_windows.cpp src/sysdeps_win32.cpp src/serialport.cpp
-#CFLAGS += -I../../../development/host/windows/usb/api -DUSE_MINGW
+SRC += src/diskwriter.cpp src/serialport.cpp
+CFLAGS += -DPLATFORM_WINDOWS
+#CFLAGS += -I../../../development/host/windows/usb/api -DUSE_MINGW src/sysdeps_windows.cpp
 #DEPEND_STATIC_LIB += ../../../prebuild/host/windows-x64/AdbWinApi.lib
 #LDFLAGS += -lws2_32
 endif
