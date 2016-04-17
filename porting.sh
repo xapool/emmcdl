@@ -9,6 +9,8 @@ sed -i "s/\"windows.h\"/\"sysdeps.h\"/g" inc/*
 sed -i "s/\"windows.h\"/\"sysdeps.h\"/g" src/*
 
 #data type
+sed -i "/typedef unsigned __int64/d" inc/xmlparser.h
+sed -i "/typedef unsigned __int64/d" inc/partition.h
 
 sed -i "s/BYTE/unsigned char/g" inc/*
 sed -i "s/BYTE/unsigned char/g" src/*
@@ -16,7 +18,7 @@ sed -i "s/SECTOR_SIZE_IN_unsigned charS/SECTOR_SIZE_IN_BYTES/g" inc/*
 sed -i "s/SECTOR_SIZE_IN_unsigned charS/SECTOR_SIZE_IN_BYTES/g" src/*
 
 sed -i '/int Log(TCHAR \*str,...);/d'  inc/*
-sed -i '/void Log(TCHAR \*str, ...);/d'  inc/*
+sed -i '/void Log(TCHAR \*str,/d'  inc/*
 sed -i "s/TCHAR/char/g" inc/*
 sed -i "s/TCHAR/char/g" src/*
 
@@ -82,7 +84,8 @@ sed -i "s/HANDLE /int /g" src/*
 sed -i "s/_wfopen_s(&fMprgFile,szFlashPrg,L\"r\");/fMprgFile = fopen(szFlashPrg,\"rb\");/g" src/dload.cpp
 
 sed -i '/tchar.h/d'  src/*
-#sed -i "s/__cdecl _tmain/main/g" src/*
+sed -i "s/_char*/char/g" src/emmcdl.cpp
+sed -i "s/__cdecl _tmain/main/g" src/emmcdl.cpp
 sed -i "s/L\"/\"/g" src/*
 sed -i "s/wprintf/printf/g" src/*
 sed -i "s/wcscmp/strcmp/g" src/*

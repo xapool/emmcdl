@@ -33,10 +33,10 @@ SRC += src/diskwriter_linux.cpp src/usbport.cpp src/usb_linux.cpp
 endif
 ifeq ($(COMPILER), mingw)
 SRC += src/diskwriter.cpp src/serialport.cpp
-CFLAGS += -DPLATFORM_WINDOWS
+CFLAGS += -DPLATFORM_WINDOWS -DARM -D_WIN32_WINNT=0x0600
 #CFLAGS += -I../../../development/host/windows/usb/api -DUSE_MINGW src/sysdeps_windows.cpp
 #DEPEND_STATIC_LIB += ../../../prebuild/host/windows-x64/AdbWinApi.lib
-#LDFLAGS += -lws2_32
+LDFLAGS += -static
 endif
 
 $(TARGET_EXE):$(OBJ) $(DEPEND_STATIC_LIB);$(CC) -o $@ $^ $(LDFLAGS)
