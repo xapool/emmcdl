@@ -23,12 +23,13 @@ SRC = \
 OBJ = $(SRC:.cpp=.o)
 DEPEND_STATIC_LIB = 
 
-CFLAGS = -fpermissive
+CFLAGS = -std=c++11 -fno-rtti -fno-exceptions
 CFLAGS += -I./inc
 LDFLAGS = -lpthread
 
 ifeq ($(COMPILER), linux)
-SRC += src/diskwriter_linux.cpp src/usbport.cpp src/usb_linux.cpp
+SRC += src/diskwriter_linux.cpp
+SRC += src/serialport.cpp
 #DEPEND_STATIC_LIB += ../../../output/lib/libselinux.a ../../../output/lib/libpcre.a
 endif
 ifeq ($(COMPILER), mingw)
